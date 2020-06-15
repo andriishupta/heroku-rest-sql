@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts"
   },
   "dependencies": {
     "body-parser": "^1.18.1",
@@ -15,7 +15,9 @@
     "pg": "^7.3.0",
     "redis": "^3.0.2",
     "reflect-metadata": "^0.1.10",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typeorm": "0.2.25",
+    "typescript": "3.3.3333",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -28,8 +30,6 @@
     "@types/redis": "^2.8.22",
     "husky": "^4.2.5",
     "prettier": "2.0.5",
-    "pretty-quick": "^2.0.1",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "3.3.3333"
+    "pretty-quick": "^2.0.1"
   }
 }

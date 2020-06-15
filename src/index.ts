@@ -10,7 +10,34 @@ import cors from 'cors';
 
 import { Routes } from './routes';
 
-createConnection()
+const config = process.env.DATABASE_URL
+  ? {
+    url: process.env.DATABASE_URL
+  }
+  : {
+    "host": "localhost",
+    "port": 5432,
+    "username": "",
+    "password": "",
+    "database": "heroku-rest-sql",
+  };
+
+const ormConfig = {
+  "type": "postgres",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["src/entity/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  },
+  ...config,
+}
+
+createConnection(ormConfig as any)
   .then(async (connection) => {
     // create express app
     const app = express();
@@ -47,7 +74,7 @@ createConnection()
     });
 
     // start express server
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
 
     console.log(
       'Express server has started on port 3000. Open http://localhost:3000 to see results'

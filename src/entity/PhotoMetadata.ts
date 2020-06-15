@@ -17,7 +17,7 @@ export class PhotoMetadata extends BaseEntity {
   width!: number;
 
   @Column()
-  height!: string;
+  height!: number;
 
   @OneToOne(type => Photo, photo => photo.metadata)
   @JoinColumn()
