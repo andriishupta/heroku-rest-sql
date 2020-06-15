@@ -2,24 +2,21 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany
+  BaseEntity,
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 import { Photo } from './Photo';
 
 @Entity()
-export class User {
+export class Album extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  firstName!: string;
+  description!: string;
 
-  @Column()
-  lastName!: string;
-
-  @Column()
-  age!: number;
-
-  @OneToMany(type => Photo, photo => photo.user)
+  @ManyToMany(type => Photo, photo => photo.albums)
+  @JoinTable()
   photos!: Photo[]
 }
